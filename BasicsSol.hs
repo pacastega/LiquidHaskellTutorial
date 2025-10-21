@@ -1,3 +1,4 @@
+{-@ LIQUID "--reflection" @-}
 module BasicsSol where
 
 import Prelude hiding (length, take, drop, map, lookup)
@@ -50,11 +51,13 @@ drop :: Int -> List a -> List a
 drop 0 xs          = xs
 drop n (Cons _ xs) = drop (n - 1) xs
 
+{-@ reflect lookup @-}
 {-@ lookup :: i:Nat -> {xs:List a | length xs > i} -> a @-}
 lookup :: Int -> List a -> a
 lookup 0 (Cons x _)  = x
 lookup n (Cons _ xs) = lookup (n - 1) xs
 
+{-@ reflect append @-}
 {-@ append :: xs:List a -> ys:List a
            -> {zs:List a | length zs == length xs + length ys} @-}
 append :: List a -> List a -> List a
@@ -66,6 +69,7 @@ insertAt :: Int -> a -> List a -> List a
 insertAt 0 x ys = Cons x ys
 insertAt n x (Cons y ys) = Cons y (insertAt (n-1) x ys)
 
+{-@ reflect map @-}
 {-@ map :: (a -> b) -> xs:List a -> {ys:List b | length ys == length xs} @-}
 map :: (a -> b) -> List a -> List b
 map _ Nil         = Nil

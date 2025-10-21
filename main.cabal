@@ -7,6 +7,8 @@ library test
                     Test
                     Basics
                     BasicsSol
+                    TheoremProving
+                    TheoremProvingSol
     build-depends:  base ^>=4.21.0.0,
                     liquid-prelude == 0.9.10.1.2,
                     liquidhaskell-boot == 0.9.12.2,
