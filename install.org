@@ -1,0 +1,92 @@
+#+LATEX_COMPILER: xelatex
+#+OPTIONS: toc:nil author:nil title:nil
+#+LATEX_HEADER: \usepackage[a4paper,margin=2.5cm]{geometry}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{microtype}
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \setlist{noitemsep}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \definecolor{linkcolor}{HTML}{3366CC}
+#+LATEX_HEADER: \hypersetup{colorlinks, allcolors=linkcolor}
+#+LATEX_HEADER: \usepackage{parskip}
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+#+LATEX_HEADER: \titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \pagestyle{fancy}
+#+LATEX_HEADER: \fancyhf{}
+#+LATEX_HEADER: \rhead{\thepage}
+#+LATEX_HEADER: \lhead{\leftmark}
+#+LATEX_HEADER: \renewcommand{\headrulewidth}{0.4pt}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \setminted{fontsize=\small,breaklines,autogobble,frame=lines,framesep=2mm,bgcolor=gray!5}
+#+LATEX_HEADER: \usemintedstyle{friendly}
+
+
+* Local installation of Liquid Haskell
+
+** Installing Haskell and Cabal
+
+The most straightforward way is using [[https://www.haskell.org/ghcup/][ghcup]], the Haskell tool chain
+installer. You can install ghcup by running the following command in
+your terminal on Linux, WSL or macOS:
+
+#+BEGIN_SRC sh
+curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
+#+END_SRC
+
+And then follow the instructions to install GHC and Cabal.
+#+BEGIN_SRC sh
+ghcup install ghc
+ghcup install cabal
+#+END_SRC
+
+** Installing Z3
+
+Liquid Haskell can work with multiple SMT solvers, but Z3 is the most
+commonly used one. You can download Z3 from its [[https://github.com/Z3Prover/z3/releases/tag/z3-4.15.3][GitHub releases page]].
+But it is very likely that your system's package manager has Z3 available.
+
+For example, on Ubuntu you can install it with:
+#+BEGIN_SRC sh
+sudo apt-get install z3
+#+END_SRC
+
+On macOS, you can use Homebrew:
+#+BEGIN_SRC sh
+brew install z3
+#+END_SRC
+
+** Installing Liquid Haskell
+
+We will use Liquid Haskell inside a Cabal project, that is, a directory that
+contains a =.cabal= file like the one included in this zip file.
+
+We also provide a test file =Test.hs= where we can write our Liquid Haskell code.
+
+To install Liquid Haskell and verify that everything is working, run:
+#+BEGIN_SRC sh
+cabal build
+#+END_SRC
+
+The first time this might take a while as Cabal will download, install
+and compile all the necessary dependencies.
+
+If everything is set up correctly, you should see Liquid Haskell
+verifying the test file without any errors. You should see something
+similar to this at the end of the output:
+#+BEGIN_SRC sh
+[1 of 1] Compiling Test             ( Test.hs, dist/build/Test.o )
+
+LIQUID: SAFE (1 constraints checked) **************************************
+#+END_SRC
+
+And that's it! You have successfully installed Liquid Haskell.
+
+* Online Liquid Haskell
+
+There is an online version of Liquid Haskell ([[https://liquidhaskell.goto.ucsd.edu/index.html]]) that you can use instead (but we recommend the local installation, if possible).
+
+* Contacts
+
+If you have any questions, please feel free to send us an email ([[mailto:alessio.ferrarini@imdea.org][alessio.ferrarini@imdea.org]], [[mailto:pablo.castellanos@imdea.org][pablo.castellanos@imdea.org]]), or ask in the [[https://liquidhaskell.slack.com/join/shared_invite/enQtMjY4MTk3NDkwODE3LTFmZGFkNGEzYWRkNDJmZDQ0ZGU1MzBiZWZiZDhhNmY3YTJiMjUzYTRlNjMyZDk1NDU3ZGIxYzhlOTIzN2UxNWE#/shared-invite/email][Liquid Haskell slack]].
