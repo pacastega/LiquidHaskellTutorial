@@ -1,0 +1,16 @@
+cabal-version:      3.0
+name:               main
+version:            1.0.0
+
+library test
+    other-modules:  Test
+    build-depends:  base ^>=4.21.0.0,
+                    liquid-prelude == 0.9.10.1.2,
+                    liquidhaskell-boot == 0.9.12.2,
+                    liquidhaskell == 0.9.12.2
+
+    hs-source-dirs: .
+
+    ghc-options:    -fplugin=LiquidHaskell
+
+    default-language:   GHC2024
