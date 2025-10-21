@@ -9,6 +9,8 @@ library test
                     BasicsSol
                     TheoremProving
                     TheoremProvingSol
+                    Termination
+                    TerminationSol
     build-depends:  base ^>=4.21.0.0,
                     liquid-prelude == 0.9.10.1.2,
                     liquidhaskell-boot == 0.9.12.2,
