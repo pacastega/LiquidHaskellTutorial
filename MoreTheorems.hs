@@ -1,4 +1,24 @@
+{-@ LIQUID "--reflection" @-}
+{-@ LIQUID "--ple" @-}
 module MoreTheorems where
+
+import Prelude hiding (lookup,length,drop,take)
+import BasicsSol hiding (take,drop)
+import Language.Haskell.Liquid.ProofCombinators
+
+{-@ reflect take @-}
+{-@ take :: n:Nat -> {xs:List a | length xs >= n}
+         -> {ys:List a | length ys == n} @-}
+take :: Int -> List a -> List a
+take 0 _           = Nil
+take n (Cons x xs) = Cons x (take (n - 1) xs)
+
+{-@ reflect drop @-}
+{-@ drop :: n:Nat -> {xs:List a | length xs >= n}
+         -> {ys:List a | length ys == length xs - n} @-}
+drop :: Int -> List a -> List a
+drop 0 xs          = xs
+drop n (Cons _ xs) = drop (n - 1) xs
 
 {-@ reflect rotate @-}
 {-@ rotate :: xs:List a -> n:Between 0 (length xs) -> List a @-}
