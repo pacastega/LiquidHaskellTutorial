@@ -11,6 +11,8 @@ library test
                     TheoremProvingSol
                     Termination
                     TerminationSol
+                    MoreTheorems
+                    MoreTheoremsSol
                     ListLaws
                     ListLawsSol
                     Fusion
